@@ -12,8 +12,10 @@
 #include <string.h>
 #include "string.h"
 #include <ctype.h>
+#include "cliente.h"
 
 #define RETRY 5
+#define TAM 1000
 
 
 int initArray(electrodomestico* list, int len){
@@ -78,6 +80,8 @@ int AltaElec(electrodomestico* list, int len, int serie, int idMarca, int modelo
 				min = 1900;
 				max = 2020;
 				getInt(&modelo, msg, msgError, min, max, RETRY);
+
+
 
 		}
 
@@ -311,4 +315,141 @@ int printMarcas(marca* Marcas, int len)
 	}
 
  return 0;
+}
+
+int menuInformes(int* opcion){
+
+	int min, max;
+	char msg[20];
+	char msgError[20];
+
+    printf("\nMenu de Opciones\n");
+    printf("1- ELECTRODOMESTICOS DEL AñO 2020");
+    printf("2- ELECTRODOMESTICO DE UNA MARCA ESPECIFICA\n");
+    printf("3- REPARACIONES EFECTUADAS A UN ELECTRODOMESTICO EN PARTICULAR \n");
+    printf("4- IMPORTE TOTAL DE LAS REPARACIONES REALIZADAS A UN ELECTRODOMESTICO \n");
+    printf("5- SERVICIO MAS PEDIDO\n");
+    printf("6- RECAUDACION EN UNA FECHA EN PARTICULAR \n");
+    printf("7- ELECTRODOMESTICOS QUE REALIZARON GARANTIA EN UNA FECHA ESPECIFICA \n");
+    printf("8- TRABAJOS REALIZADOS A ELECTRODOMESTICOS MODELO 2018");
+    printf("9- FACTURACION TOTAL POR MANTENIMIENTOS");
+    printf("10- LA MARCA CON MAS REPARACIONES");
+    printf("11- ELECTRODOMESTICOS QUE FUERON REPARADOS EN UNA FECHA ESPECIFICA");
+    strcpy(msg, "Ingrese opcion\n");
+    strcpy(msgError, "opcion no contemplada\n");
+    min =1;
+    max =11;
+    fpurge(stdin);
+    getInt(opcion, msg, msgError, min, max, RETRY);
+
+    return 0;
+
+}
+
+int idDescripcion(int idMarca, marca* Marcas, int lenMar, char descripcion[]){
+
+	int i;
+
+
+	if(Marcas != NULL && lenMar >0 && descripcion != NULL){
+		for(i= 1; i< 6; i++){
+
+				if(idMarca == Marcas[i].id){
+
+					strcpy(descripcion, Marcas[i].descripcion);
+					break;
+				}
+
+		}
+
+	}
+return 0;
+
+}
+
+
+
+int elec2020(electrodomestico* list, int len, marca* Marcas, int lenMar){
+
+	char descripcion[20];
+
+	int i;
+	int acum =0;
+
+	if(list != NULL && len > 0){
+		for( i =0; i<len; i++){
+			if(list[i].modelo == 2020){
+				idDescripcion(list[i].id, Marcas, 5, descripcion);
+				printf("\n ID   SERIE  MARCA ");
+				printf("\n %4d %6d %6s", list[i].id, list[i].serie, descripcion);
+				acum++;
+			}
+
+		}
+		if(acum == 0){
+			printf("\n no se encontraron electrodomesticos modelo 2020");
+		}
+	}
+	return 0;
+
+}
+
+int elecPorMarca(electrodomestico* list, int len, marca* Marcas, int lenMar, int idMarca){
+
+	int min, max;
+	char msg[20];
+	char msgError[20];
+	int i;
+	int acum =0;
+
+	if(list !=NULL && len > 0 && Marcas != NULL && lenMar > 0){
+		printMarcas(Marcas, 5);
+		strcpy(msg, "Ingrese ID de marca\n");
+		strcpy(msgError, "opcion no contemplada\n");
+		min =1;
+		max =5;
+		fpurge(stdin);
+		getInt(&idMarca, msg, msgError, min, max, RETRY);
+
+		for(i=0;i<len;i++){
+			if(list[i].idMarca == idMarca){
+				printf("\n ID   SERIE   MODELO  ");
+				printf("\n %4d %6d %8d", list[i].id, list[i].serie ,list[i].modelo);
+				acum++;
+			}
+		}
+		if(acum == 0){
+			printf("\n no se encontraron electrodomesticos dados de alta de la marca pedida");
+		}
+	}
+
+	return 0;
+}
+
+int reparacionIdCliente(electrodomestico* list, int lenElec, cliente* Clientes, int len, reparacion* catalogo, int lenCata, marca* Marcas, int lenMarcas){
+
+	int i;
+	char msg[20];
+	char msgError[20];
+	char descripcion[20];
+	int idCliente;
+	if(Clientes != NULL && len > 0 && catalogo != NULL && lenCata > 0 && Marcas != NULL && lenMarcas > 0){
+
+		strcpy(msg, "Ingrese ID de CLIENTE\n");
+		strcpy(msgError, "opcion no contemplada\n");
+		fpurge(stdin);
+		getInt(&idCliente, msg, msgError, 1, TAM, RETRY);
+
+		for(i=0; i<len; i++){
+			if(idCliente == catalogo[i].idCliente && catalogo[i].isEmpty == 0){
+				idDescripcion(list[i].id, Marcas, 5, descripcion);
+				printf("\n ID   SERIE   MODELO  DESCRIPCION ");
+				printf("\n %4d %6d %8d %10s", list[i].id, list[i].serie ,list[i].modelo, descripcion);
+				break;
+			}
+		}
+
+	}
+
+	return 0;
 }

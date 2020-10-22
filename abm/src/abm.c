@@ -25,7 +25,7 @@ int main(void) {
 
 		int flagAltaElec = 0;
 		int flagAltaRep = 0;
-		int opcion;
+		int opcion, Opcion;
 		int idElec = 0;
 		int posicion = 0;
 		int posicionRep = 0;
@@ -37,6 +37,7 @@ int main(void) {
 		int auxIdElec =0;
 		int order;
 		int idRep = 0;
+		int idMarca =0;
 
 		electrodomestico list[TAM];
 		reparacion catalogo[TAM];
@@ -166,6 +167,29 @@ int main(void) {
 				else{
 					printf("\n primero debe dar de ALTA una reparacion");
 				}
+				break;
+			case 9:
+
+					switch(menuInformes(&Opcion)){
+
+						case 1:
+							elec2020(list, TAM, Marcas, 5);
+							break;
+						case 2:
+							elecPorMarca(list, TAM, Marcas, 5, idMarca);
+							break;
+						case 3:
+							reparacionIdCliente(list, TAM, Clientes, 3, catalogo, TAM, Marcas, 5);
+							break;
+						case 4:
+
+							break;
+						}
+
+
+
+
+
 				break;
 
 		}

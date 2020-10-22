@@ -85,4 +85,10 @@ int printMarcas(marca* Marcas, int len);
  * param 2: largo del array
  */
 
+int menuInformes(int* opcion);
+int elec2020(electrodomestico* list, int len, marca* Marcas, int lenMar);
+int idDescripcion(int idMarca, marca* Marcas, int lenMar, char descripcion[]);
+int elecPorMarca(electrodomestico* list, int len, marca* Marcas, int lenMar, int idMarca);
+int reparacionIdCliente(electrodomestico* list, int lenElec, cliente* Clientes, int len, reparacion* catalogo, int lenCata, marca* Marcas, int lenMarcas);
+
 #endif /* ELECTRODOMESTICO_H_ */

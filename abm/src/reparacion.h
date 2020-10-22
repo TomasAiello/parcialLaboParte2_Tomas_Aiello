@@ -30,7 +30,6 @@ typedef struct{
 	int precio;
 }servicio;
 
-
 typedef struct{
 	int id, serie, idServicio, isEmpty, idCliente;
 	fecha fechaReparacion;

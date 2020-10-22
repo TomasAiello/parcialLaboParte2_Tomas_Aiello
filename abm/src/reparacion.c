@@ -121,6 +121,7 @@ int utn_menu(int* flagAltaElec, int* flagAltaRep){
     printf("6- LISTAR SERVICIOS \n");
     printf("7- ALTA REPARACION \n");
     printf("8- LISTAR REPARACIONES \n");
+    printf("9- INFORMES");
     strcpy(msg, "Ingrese opcion\n");
     strcpy(msgError, "opcion no contemplada\n");
     min =1;
@@ -171,7 +172,12 @@ int utn_menu(int* flagAltaElec, int* flagAltaRep){
     				    getInt(&opcion, msg, msgError, min, max, RETRY);
     				   }
     				break;
-
+    			case 9:
+    				if(*flagAltaElec == 0){
+    				   printf("Para INFORMAR primero debe dar de ALTA \n");
+    				   fpurge(stdin);
+    				   getInt(&opcion, msg, msgError, min, max, RETRY);
+    				   }
     			}
 
     	}while(*flagAltaElec == 0);
@@ -292,4 +298,21 @@ int printRep(reparacion* catalogo, int len, fecha* momento, int lenMomento)
 	}
 
  return 0;
+}
+int listar0Rep(){
+
+	int i;
+
+	for(i = 0; i<len; i++){
+
+
+
+
+
+	}
+
+
+
+
+	return 0;
 }
