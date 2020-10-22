@@ -299,20 +299,3 @@ int printRep(reparacion* catalogo, int len, fecha* momento, int lenMomento)
 
  return 0;
 }
-int listar0Rep(){
-
-	int i;
-
-	for(i = 0; i<len; i++){
-
-
-
-
-
-	}
-
-
-
-
-	return 0;
-}

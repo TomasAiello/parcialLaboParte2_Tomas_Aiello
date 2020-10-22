@@ -23,7 +23,6 @@ typedef struct{
 	int dia, mes, anio;
 }fecha;
 
-
 typedef struct{
 	int id;
 	char descripcion[25];

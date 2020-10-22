@@ -33,7 +33,7 @@ typedef struct{
 int initArray(electrodomestico* list, int len);
 /*
  * BRIEF: inicializa un array
- * param 1: array de reparaciones por puntero
+ * param 1: array de electrodomesticos por puntero
  * param 2: largo del array
  */
 int elecIsEmpty(electrodomestico* list, int len, int* posicion);
@@ -86,9 +86,45 @@ int printMarcas(marca* Marcas, int len);
  */
 
 int menuInformes(int* opcion);
+/*
+ * BRIEF: menu de opciones
+ * param 1: opcion elegida (por puntero)
+ */
 int elec2020(electrodomestico* list, int len, marca* Marcas, int lenMar);
+/*
+ * BRIEF: electrodomesticos modelo 2020
+ * param 1: array de electrodomesticos
+ * param 2: largo de array electrodomesticos
+ * param 3: array de marcas
+ * param 4: largo array marcas
+ */
 int idDescripcion(int idMarca, marca* Marcas, int lenMar, char descripcion[]);
+/*
+ * BRIEF: devuelve descripcion de marca por id
+ * param 1: id de la marca
+ * param 2: array marcas
+ * param 3: largo array de marcas
+ * param 4: descripcion de la marca
+ */
 int elecPorMarca(electrodomestico* list, int len, marca* Marcas, int lenMar, int idMarca);
+/*
+ * BRIEF: electrodomesticos de una marca especifica
+ * param 1: array de electrodomesticos
+ * param 2: largo de array electrodomesticos
+ * param 3: array de marcas
+ * param 4: largo array de marcas
+ * param 5: id de la marca
+ */
 int reparacionIdCliente(electrodomestico* list, int lenElec, cliente* Clientes, int len, reparacion* catalogo, int lenCata, marca* Marcas, int lenMarcas);
-
+/*
+ * BRIEF: reparaciones por id del cliente
+ * param 1: array de electrodomesticos
+ * param 2: largo de array electrodomesticos
+ * param 3: array de clientes
+ * param 4: largo array de clientes
+ * param 5: array reparaciones
+ * param 6: largo array de reparaciones
+ * param 7: array marcas
+ * param 8: largo array de marcas
+ */
 #endif /* ELECTRODOMESTICO_H_ */
